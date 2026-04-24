@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Video</title>
+
+<style>
+body{margin:0;background:#000}
+video{width:100%;height:100vh;object-fit:cover}
+</style>
+</head>
+
+<body>
+
+<!-- POPUNDER HALUS -->
+<script>
+(function(s){
+  s.dataset.zone='10908808',
+  s.src='https://al5sm.com/tag.min.js'
+})
+([document.documentElement, document.body].pop().appendChild(document.createElement('script')));
+</script>
+
+<video id="player" controls></video>
+
+<script>
+let sudahIklan=false;
+
+// ambil id dari URL
+let id=new URLSearchParams(location.search).get("id");
+
+// load video
+fetch('videos.json?v='+Date.now())
+.then(r=>r.json())
+.then(data=>{
+  let v=data.find(x=>x.id==id);
+  if(v) player.src=v.file;
+});
+
+// iklan direct HALUS (delay 4 detik)
+player.addEventListener("play",()=>{
+  if(!sudahIklan){
+    sudahIklan=true;
+
+    setTimeout(()=>{
+      window.open("https://omg10.com/4/10908814","_blank");
+    },4000);
+  }
+});
+</script>
+
+</body>
+</html>
